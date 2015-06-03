@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>distance-from (jQuery+LeafLet)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="../distance-from.js"></script>
+</head>
+<body>
+	<h1>distance-from (jQuery+LeafLet)</h1>
+	<h2>Example</h2>
+	<form action="#">
+		From here:<br />
+		<input type="text" name="from-lat" value="45.07" /><br />
+		<input type="text" name="from-lng" value="7.7" /><br />
+		<button type="submit" class="change">Update all</button>
+	</form>
+	<p>
+		To this position (45.3;7.57): <span class="distance-from" data-lat="45.3" data-lng="7.57"></span><br />
+		To this position (45.4;7.58): <span class="distance-from" data-lat="45.4" data-lng="7.58"></span><br />
+		To this position (45.5;7.59): <span class="distance-from" data-lat="45.5" data-lng="7.59"></span><br />
+		To this position (45.6;7.60): <span class="distance-from" data-lat="45.6" data-lng="7.60"></span><br />
+	</p>
+	<script>
+		$("form").submit(function(e) {
+
+			// Get start position from the form
+			var fromHere = L.latLng(
+				$("input[name='from-lat']").val(),
+				$("input[name='from-lng']").val()
+			);
+
+			// From the start position to the position in the DOM
+			$(".distance-from").distanceFrom({
+				kmPrecision: 2,
+				fromPosition: fromHere
+			});
+
+			e.preventDefault();
+		});
+	</script>
+</body>
+</html>
