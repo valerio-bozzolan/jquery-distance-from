@@ -11,30 +11,28 @@
 <p id="test3"></p>
 
 <script type="text/javascript">
-  // Setting the default position:
-  $.fn.distanceFrom.defaults.toPosition = function() {
-    return L.latLng(45.072, 7.71); // Set default position "to"
-  };
-  
-  $(document).ready(function() {
-  
-    // From data-lat & data-lng in the DOM to the above default position
-    $("#test1").distanceFrom();
-  
-    // From the data in the option to the default position
-    $("#test2").distanceFrom({
-      lat: 45.33,
-      lng: 7.57
-    });
-  
-    // From the data in the option to the specified position
-    $("#test3").distanceFrom({
-      lat:45.33,
-      lng:7.57,
-      toPosition: L.latLng(45.072, 7.71)
-    });
-  
-  });
+	// Setting the default position:
+	$.fn.distanceFrom.defaults.fromPosition = latLng(45.072, 7.71); // Set default "from" position
+
+	$(document).ready(function() {
+
+		// From the specified "to" position in the DOM to the default "from" position
+		$("#test1").distanceFrom();
+
+		// From the specified "to" position to the default "from" position
+		$("#test2").distanceFrom({
+			lat: 45.33,
+			lng: 7.57
+		});
+
+		// From the specified "to" position to the specified "from" position
+		$("#test3").distanceFrom({
+			lat:45.33,
+			lng:7.57,
+			fromPosition: L.latLng(45.072, 7.71)
+		});
+
+	});
 </script>
 
 <!-- ... -->
